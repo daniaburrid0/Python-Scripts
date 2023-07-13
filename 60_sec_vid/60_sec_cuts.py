@@ -2,10 +2,11 @@
 from moviepy.video.io.ffmpeg_tools import ffmpeg_extract_subclip
 from moviepy.editor import VideoFileClip
 import os
+from tqdm import tqdm
 
-# This function takes a video file path as an input, cuts it into 60-second clips, 
+# This function takes a video file path as an input, cuts it into clips of the specified duration,
 # and saves them in a new directory with the same name as the video file.
-def cut_video(path):
+def cut_video(path, clip_duration=60):
     # Load the video file from the path
     clip = VideoFileClip(path)
     
@@ -20,28 +21,25 @@ def cut_video(path):
     # Define the output folder and create it if it doesn't exist
     output_folder = os.path.join(dir_name, filename_without_ext)
     if not os.path.exists(output_folder):
-        os.makedirs(output_folder)
+        try:
+            os.makedirs(output_folder)
+        except OSError as e:
+            print(f"Error creating output folder: {e}")
+            return
     
-    # If the video is longer than 60 seconds, cut it into 60-second clips
-    if duration > 60:
-        start_time = 0
-        end_time = 60
-        i = 1
-
-        while start_time < duration:
-            output = os.path.join(output_folder, f"{filename_without_ext}_{i}.mp4")
-            
-            # Extract the clip from start_time to end_time and save it
-            ffmpeg_extract_subclip(path, start_time, min(end_time, duration), targetname=output)
-            
-            # Update start_time and end_time for the next clip
-            start_time += 60
-            end_time += 60
-            i += 1
-    else:
-        # If the video is 60 seconds or less, copy it to the output folder
+    # If the video is shorter than the clip duration, copy it to the output folder
+    if duration <= clip_duration:
         output = os.path.join(output_folder, f"{filename_without_ext}_1.mp4")
         clip.write_videofile(output)
+        return
+    
+    # Cut the video into clips of the specified duration
+    num_clips = int(duration / clip_duration) + 1
+    for i in tqdm(range(num_clips)):
+        start_time = i * clip_duration
+        end_time = min((i + 1) * clip_duration, duration)
+        output = os.path.join(output_folder, f"{filename_without_ext}_{i+1}.mp4")
+        ffmpeg_extract_subclip(path, start_time, end_time, targetname=output)
 
 # This function prompts the user for a video file path and performs basic error checking.
 def get_user_input():
@@ -57,7 +55,8 @@ def get_user_input():
 # This is the main function that coordinates the user input and the video cutting.
 def main():
     video_path = get_user_input()
-    cut_video(video_path)
+    clip_duration = int(input("Please enter the clip duration in seconds (default is 60): ") or "60")
+    cut_video(video_path, clip_duration)
 
 # This is the entry point of the script. When the script is run, it calls the main function.
 if __name__ == "__main__":
