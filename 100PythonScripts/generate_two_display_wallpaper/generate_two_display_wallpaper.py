@@ -12,6 +12,7 @@ Tips:
 
 import argparse
 from PIL import Image
+import fire
 
 def merge_wallpapers(img1_path, img2_path, output_path):
     img1 = Image.open(img1_path)
@@ -43,4 +44,4 @@ def main():
         print(f"Error: {e}")
 
 if __name__ == "__main__":
-    main()
+    fire.Fire(main)
