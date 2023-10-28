@@ -7,48 +7,6 @@ def trancribe_audio(audio_path):
         transcription = openai.Audio.transcribe("whisper-1", audio_file)
     return transcription['text']
 
-def meeting_minutes(transcription):
-    abstract_summary = abstract_summary_extraction(transcription)
-    key_points = key_points_extraction(transcription)
-    return {
-        'abstract_summary': abstract_summary,
-        'key_points': key_points,
-    }
-
-def abstract_summary_extraction(transcription):
-    response = openai.ChatCompletion.create(
-        model="gpt-4",
-        temperature=0,
-        messages=[
-            {
-                "role": "system",
-                "content": "You are a highly skilled AI trained in language comprehension and summarization. I would like you to read the following text and summarize it into a concise abstract paragraph. Aim to retain the most important points, providing a coherent and readable summary that could help a person understand the main points of the discussion without needing to read the entire text. Please avoid unnecessary details or tangential points."
-            },
-            {
-                "role": "user",
-                "content": transcription
-            }
-        ]
-    )
-    return response['choices'][0]['message']['content']
-
-def key_points_extraction(transcription):
-    response = openai.ChatCompletion.create(
-        model="gpt-4",
-        temperature=0,
-        messages=[
-            {
-                "role": "system",
-                "content": "You are a proficient AI with a specialty in distilling information into key points. Based on the following text, identify and list the main points that were discussed or brought up. These should be the most important ideas, findings, or topics that are crucial to the essence of the discussion. Your goal is to provide a list that someone could read to quickly understand what was talked about."
-            },
-            {
-                "role": "user",
-                "content": transcription
-            }
-        ]
-    )
-    return response['choices'][0]['message']['content']
-
 def saves_to_docx(minutes, filename):
     doc = Document()
     for k, v in minutes.items():
@@ -85,11 +43,9 @@ def main():
         audio_path = input("Enter the path to the audio file: ") 
     
     transcripton = trancribe_audio(audio_path)
-    minutes = meeting_minutes(transcripton)
-    print(minutes)
     # ask for the filename
     filename = input("Enter the filename: ")
-    saves_to_docx(minutes, filename+'.docx')
+    saves_to_docx(transcripton, filename+'.docx')
     
 if __name__ == '__main__':
     main()
