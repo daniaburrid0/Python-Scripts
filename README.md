@@ -31,3 +31,7 @@ Este repositorio contiene una colección de scripts de Python diseñados para di
 13. **tic_tac_toe.py**: Este script es una implementación del juego Tic-Tac-Toe (Tres en línea) en Python. Utiliza la biblioteca `rich` para la presentación en la consola.
 
 14. **to_do.py**: Este script maneja una lista de tareas pendientes. Utiliza la biblioteca `rich` para una salida formateada en consola.
+
+15. **markergr.py**: Este script recibe una imagen y un texto usando la libreria gradio para la interfaz. Devuelve la imagen con el texto como watermark
+
+16. **markertk.py**: Este script recibe una imagen y un texto usando la libreria tkinter para la interfaz. Devuelve la imagen con el texto como watermark

@@ -1,0 +1,33 @@
+2023-10-29 20:26:31,996 - DEBUG - Starting new HTTPS connection (1): checkip.amazonaws.com:443
+2023-10-29 20:26:31,996 - DEBUG - Starting new HTTPS connection (1): api.gradio.app:443
+2023-10-29 20:26:31,996 - DEBUG - Using proactor: IocpProactor
+2023-10-29 20:26:32,022 - INFO - Launching Gradio Interface.
+2023-10-29 20:26:32,052 - DEBUG - Using proactor: IocpProactor
+2023-10-29 20:26:32,063 - DEBUG - Starting new HTTP connection (1): 127.0.0.1:7860
+2023-10-29 20:26:32,065 - DEBUG - http://127.0.0.1:7860 "GET /startup-events HTTP/1.1" 200 5
+2023-10-29 20:26:32,071 - DEBUG - Starting new HTTP connection (1): 127.0.0.1:7860
+2023-10-29 20:26:32,086 - DEBUG - http://127.0.0.1:7860 "HEAD / HTTP/1.1" 200 0
+2023-10-29 20:26:32,088 - DEBUG - Starting new HTTPS connection (1): checkip.amazonaws.com:443
+2023-10-29 20:26:33,293 - DEBUG - https://checkip.amazonaws.com:443 "GET / HTTP/1.1" 200 14
+2023-10-29 20:26:33,293 - DEBUG - https://checkip.amazonaws.com:443 "GET / HTTP/1.1" 200 14
+2023-10-29 20:26:33,295 - DEBUG - Encoding detection: ascii is most likely the one.
+2023-10-29 20:26:33,295 - DEBUG - Encoding detection: ascii is most likely the one.
+2023-10-29 20:26:33,297 - DEBUG - Starting new HTTPS connection (1): api.gradio.app:443
+2023-10-29 20:26:33,300 - DEBUG - Starting new HTTPS connection (1): api.gradio.app:443
+2023-10-29 20:26:33,347 - DEBUG - https://api.gradio.app:443 "GET /pkg-version HTTP/1.1" 200 21
+2023-10-29 20:26:34,757 - DEBUG - https://api.gradio.app:443 "POST /gradio-initiated-analytics/ HTTP/1.1" 200 None
+2023-10-29 20:26:34,772 - DEBUG - https://api.gradio.app:443 "POST /gradio-launched-telemetry/ HTTP/1.1" 200 None
+2023-10-29 20:26:56,409 - DEBUG - Loaded backend tkagg version 8.6.
+2023-10-29 20:26:56,414 - DEBUG - Loaded backend agg version v2.2.
+2023-10-29 20:26:56,424 - DEBUG - STREAM b'IHDR' 16 13
+2023-10-29 20:26:56,424 - DEBUG - STREAM b'sRGB' 41 1
+2023-10-29 20:26:56,424 - DEBUG - STREAM b'IDAT' 54 8192
+2023-10-29 20:26:56,472 - DEBUG - Entered add_watermark function.
+2023-10-29 20:26:56,474 - DEBUG - Successfully converted image array to PIL Image object.
+2023-10-29 20:26:56,479 - DEBUG - Created a copy of the original image for watermarking.
+2023-10-29 20:26:56,479 - DEBUG - Loaded font successfully.
+2023-10-29 20:26:56,482 - DEBUG - Successfully created a transparent overlay.
+2023-10-29 20:26:56,482 - DEBUG - Watermark text drawn on overlay.
+2023-10-29 20:26:56,482 - DEBUG - Watermark text drawn on the actual image.
+2023-10-29 20:26:56,482 - INFO - Watermark added successfully.
+2023-10-29 20:26:57,054 - DEBUG - Loaded backend TkAgg version 8.6.
