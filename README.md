@@ -32,6 +32,8 @@ Este repositorio contiene una colección de scripts de Python diseñados para di
 
 14. **to_do.py**: Este script maneja una lista de tareas pendientes. Utiliza la biblioteca `rich` para una salida formateada en consola.
 
-15. **markergr.py**: Este script recibe una imagen y un texto usando la libreria gradio para la interfaz. Devuelve la imagen con el texto como watermark
+15. **markergr.py**: Este script recibe una imagen y un texto usando la libreria gradio para la interfaz. Devuelve la imagen con el texto como watermark.
 
-16. **markertk.py**: Este script recibe una imagen y un texto usando la libreria tkinter para la interfaz. Devuelve la imagen con el texto como watermark
+16. **markertk.py**: Este script recibe una imagen y un texto usando la libreria tkinter para la interfaz. Devuelve la imagen con el texto como watermark.
+
+17. **typing_speed.py**: Este script crea una ventana con tkinter para probar mi velocidad de escritura.
