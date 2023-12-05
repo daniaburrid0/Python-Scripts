@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>NASA and GPT-4 Data Processor</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <style>
+        .json-key {
+            font-weight: bold;
+        }
+        .json-value {
+            margin-left: 20px;
+        }
+        .json-object {
+            margin-left: 40px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+                <h1 class="mb-4 text-center">NASA and GPT-4 Data Processor</h1>
+                <div class="card">
+                    <div class="card-body">
+                        <form method="post">
+                            <div class="mb-3">
+                                <label for="nasa_api_key" class="form-label">NASA API Key:</label>
+                                <input type="text" class="form-control" id="nasa_api_key" name="nasa_api_key" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="openai_api_key" class="form-label">OpenAI API Key:</label>
+                                <input type="text" class="form-control" id="openai_api_key" name="openai_api_key" required>
+                            </div>
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <!-- JSON Data Display -->
+                {% if processed_data %}
+                    <div class="alert alert-success mt-4">
+                        <h3 class="alert-heading">Processed Data (JSON):</h3>
+                        <div id="json-display" class="json-object"></div>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    <script>
+        // Parse the JSON string to an object
+        var data = {{ processed_data|safe }};
+        
+        // Function to create HTML for JSON data
+        function jsonToHtml(jsonObject) {
+            var html = '';
+            for (var key in jsonObject) {
+                if (typeof jsonObject[key] === 'object' && jsonObject[key] !== null) {
+                    html += '<div class="json-key">' + key + ':</div>';
+                    html += '<div class="json-object">' + jsonToHtml(jsonObject[key]) + '</div>';
+                } else {
+                    html += '<div class="json-key">' + key + ':</div>';
+                    html += '<div class="json-value">' + jsonObject[key] + '</div>';
+                }
+            }
+            return html;
+        }
+
+        // Render the JSON as HTML
+        document.getElementById('json-display').innerHTML = jsonToHtml(data);
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
